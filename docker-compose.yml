@@ -1,0 +1,11 @@
+services:
+  rifa:
+    build: .
+    container_name: rifa_app
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app
+    restart: unless-stopped
