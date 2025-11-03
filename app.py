@@ -14,7 +14,7 @@ from reportlab.lib.colors import black, HexColor
 # ============================
 # Config
 # ============================
-RAFFLE_TITLE = os.getenv("RAFFLE_TITLE", "Rifa para Casamento de Tatiana e Fernando! Nos ajude!")
+RAFFLE_TITLE = os.getenv("RAFFLE_TITLE", "Rifa para uma Causa Nobre!")
 TOTAL_NUMBERS = int(os.getenv("TOTAL_NUMBERS", "200"))
 ADMIN_KEY = os.getenv("ADMIN_KEY", "valeria_loren")
 HOST = os.getenv("HOST", "0.0.0.0")
@@ -82,7 +82,7 @@ def build_buyers_pdf(rows):
     margin_x = 20 * mm
     margin_y = 20 * mm
 
-    pdf.setTitle(f"{RAFFLE_TITLE} — Compradores")
+    pdf.setTitle(f"{RAFFLE_TITLE} — Pessoas Solidárias")
 
     def draw_header():
         pdf.setFont("Helvetica-Bold", 12)
@@ -90,7 +90,7 @@ def build_buyers_pdf(rows):
         pdf.drawString(margin_x, height - margin_y, RAFFLE_TITLE)
         pdf.setFont("Helvetica", 10)
         pdf.setFillColor(black)
-        pdf.drawString(margin_x, height - margin_y - 12, f"Relatório de compradores — atualizado em {datetime.utcnow().strftime('%d/%m/%Y %H:%M')}")
+        pdf.drawString(margin_x, height - margin_y - 12, f"Relatório confidencial — atualizado em {datetime.utcnow().strftime('%d/%m/%Y %H:%M')}")
         pdf.line(margin_x, height - margin_y - 16, width - margin_x, height - margin_y - 16)
 
     draw_header()
@@ -141,7 +141,8 @@ BASE_HEAD = f"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{RAFFLE_TITLE}</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e11d48' d='M16 29s-9-5.686-13-11.314C-.432 12.067 1.318 6 6.2 4.226a6.2 6.2 0 0 1 6.8 1.554L16 8.942l3-3.162c2.19-2.307 5.72-2.834 8.4-1.554 4.88 1.774 6.63 7.84 3.2 13.46C25 23.314 16 29 16 29z'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="icon" type="image/svg+xml" 
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23facc15'/%3E%3Cpath d='M13 20h6v2h-6zM15 9h2v7h-2z' fill='%230f172a'/%3E%3Ccircle cx='12' cy='13' r='1' fill='%230f172a'/%3E%3Ccircle cx='20' cy='13' r='1' fill='%230f172a'/%3E%3C/svg%3E" />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -274,13 +275,13 @@ BASE_HEAD = f"""
   }}
   /* --- Títulos e layout --- */
   header h1 {{
-    color: #be123c;
+    color: #0f172a;
     font-weight: 700;
     letter-spacing: -0.01em;
   }}
   header span {{
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(244, 63, 94, 0.3);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.4);
   }}
   footer {{
     color: #9ca3af;
@@ -325,21 +326,21 @@ document.addEventListener('DOMContentLoaded', function () {{
 <body class="min-h-screen bg-white text-slate-900">
 <div class="max-w-4xl mx-auto p-4 sm:p-8">
   <header class="mb-8 text-center">
-      <span class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-rose-500 shadow-sm">💖 Rifa Solidária 💖</span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-rose-500 shadow-sm">🔒 Missão Solidária Secreta</span>
       <h1 class="mt-4 text-2xl sm:text-3xl font-bold leading-tight">{RAFFLE_TITLE}</h1>
-      <div class="mt-6 bg-gradient-to-br from-rose-50 via-white to-emerald-50 border border-rose-100 shadow-inner rounded-3xl p-5 sm:p-7 space-y-4 text-center">
-  <h2 class="text-xl sm:text-2xl font-bold text-rose-600 mb-2">🎁 Prêmios do Sorteio 🎁</h2>
+      <div class="mt-6 bg-white border border-slate-200 shadow-sm rounded-3xl p-5 sm:p-7 space-y-4 text-center">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-700 mb-2">🎁 Prêmios Confirmados</h2>
   
 <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-slate-700 text-sm sm:text-base font-medium leading-relaxed text-left max-w-2xl mx-auto">
-  <li>💄 1 Kit de Maquiagem</li>
-  <li>🛏️ 1 Lençol</li>
-  <li>🧴 1 Hidratante Lily</li>
-  <li>🌸 1 Perfume O Boticário</li>
-  <li>⌚ 1 Relógio de Pulso</li>
-  <li>🍮 1 Pudim</li>
-  <li>🛌 1 Lençol</li>
-  <li>💧 1 Edge Blue (O Boticário)</li>
-  <li>🧴 1 Hidratante Corporal + Íntimo</li>
+  <li>💄 1 - Kit de maquiagem completo</li>
+  <li>🛏️ 1 - Jogo de lençol</li>
+  <li>🧴 1 - Hidratante Lily</li>
+  <li>🌸 1 - Perfume O Boticário</li>
+  <li>⌚ 1 - Relógio de pulso</li>
+  <li>🍮 1 - Pudim artesanal</li>
+  <li>🧼 1 - Sabonetes especiais</li>
+  <li>💧 1 - Edge Blue (O Boticário)</li>
+  <li>🧴 1 - Hidratante corporal e íntimo</li>
 </ul>
 
 
@@ -347,13 +348,13 @@ document.addEventListener('DOMContentLoaded', function () {{
     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-5 py-2 text-emerald-600 font-semibold border border-emerald-300 shadow-sm text-base sm:text-lg">
       💰 Valor: <strong class="text-emerald-700 font-bold">R$ 5,00</strong>
     </span>
-    <span class="inline-flex items-center gap-2 rounded-full bg-rose-500/10 px-5 py-2 text-rose-600 font-semibold border border-rose-300 shadow-sm text-base sm:text-lg">
-      📅 Sorteio: <strong class="text-rose-700 font-bold">30 / 11 / 2025</strong>
+    <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-5 py-2 text-slate-600 font-semibold border border-slate-300 shadow-sm text-base sm:text-lg">
+      📅 Data do Sorteio: <strong class="text-slate-700 font-bold">30 / 11 / 2025</strong>
     </span>
   </div>
 
   <p class="mt-4 text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-    Escolha seus números da sorte! ABAIXO!
+    Escolha seus números e prepare-se: a causa é nobre, os detalhes são sigilosos, haha!
   </p>
 </div>
 
@@ -362,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function () {{
 
 FOOTER = """
     <footer class="mt-10 text-center text-xs text-slate-400">
-        <p>&copy; Love — Rifa Solidária</p>
+        <p>&copy; Operação Solidária — Causa Nobre</p>
     </footer>
 </div>
 </body>
@@ -370,7 +371,7 @@ FOOTER = """
 """
 
 INDEX_TMPL = BASE_HEAD + """
-<div class="raffle-card rounded-3xl bg-white/70 shadow-2xl shadow-rose-100 p-5 sm:p-8 space-y-6 border border-white/40">
+<div class="raffle-card rounded-3xl bg-white border border-slate-200 shadow-lg p-5 sm:p-8 space-y-6">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
       <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Status geral</p>
@@ -384,12 +385,12 @@ INDEX_TMPL = BASE_HEAD + """
       <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span> Vendido
     </span>
 
-    <a href="https://wa.me/5592982583934?text=Ol%C3%A1.%20gostaria%20de%20comprar%20sua%20rifa!" target="_blank"
+    <a href="https://wa.me/5592982583934?text=Ol%C3%A1.%20quero%20participar%20da%20rifa%20da%20causa%20nobre!" target="_blank"
    class="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-400 px-5 py-2 text-emerald-700 font-semibold shadow-sm hover:bg-emerald-100 hover:border-emerald-500 transition-all duration-200">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="h-5 w-5 fill-emerald-600">
     <path d="M16.003 3.003A12.99 12.99 0 0 0 3 16.002a12.93 12.93 0 0 0 1.844 6.669L3 29l6.518-1.82A12.95 12.95 0 0 0 16.003 29c7.168 0 12.997-5.83 12.997-12.998 0-7.167-5.83-12.998-12.997-12.998zm0 23.404a10.37 10.37 0 0 1-5.269-1.448l-.377-.223-3.87 1.083 1.035-3.951-.244-.405a10.37 10.37 0 0 1-1.565-5.46c0-5.735 4.666-10.401 10.39-10.401a10.3 10.3 0 0 1 10.388 10.401c0 5.733-4.654 10.404-10.388 10.404zm5.703-7.787c-.311-.155-1.839-.905-2.125-1.009-.285-.104-.492-.155-.698.156-.205.311-.8 1.008-.98 1.214-.18.205-.36.232-.67.078-.312-.155-1.318-.485-2.51-1.545-.928-.827-1.554-1.846-1.737-2.157-.18-.312-.02-.48.136-.635.139-.138.312-.36.467-.54.156-.18.207-.312.311-.518.104-.205.052-.389-.026-.544-.078-.155-.698-1.676-.958-2.296-.25-.6-.506-.518-.698-.528l-.597-.011a1.15 1.15 0 0 0-.83.389c-.285.312-1.09 1.064-1.09 2.595s1.117 3.011 1.272 3.222c.155.207 2.196 3.354 5.32 4.703.744.322 1.324.514 1.775.659.745.237 1.424.204 1.96.123.598-.089 1.838-.75 2.098-1.477.26-.728.26-1.35.182-1.477-.077-.128-.285-.206-.596-.361z"/>
   </svg>
-  <span>Comprar</span>
+  <span>Compre!</span>
 </a>
 
 
@@ -408,21 +409,21 @@ INDEX_TMPL = BASE_HEAD + """
   </div>
 
   <div class="rounded-2xl border border-dashed border-slate-200 bg-white/60 p-4 text-center text-sm text-slate-600">
-    <p>Quer garantir um número? Envie uma mensagem para os noivos com o(s) número(s) desejado(s). Assim que a confirmação acontecer, o card fica vermelho automaticamente.</p>
+    <p>Quer garantir um número? Envie uma mensagem para nossa equipe sigilosa com o(s) número(s) desejado(s). Assim que confirmarmos, o card muda automaticamente.</p>
   </div>
 </div>
 
 """ + FOOTER
 
 ADMIN_TMPL = BASE_HEAD + """
-<div class="raffle-card rounded-3xl bg-white/80 shadow-2xl shadow-slate-200 p-6 sm:p-8 border border-white/50 space-y-6">
+<div class="raffle-card rounded-3xl bg-white border border-slate-200 shadow-lg p-6 sm:p-8 space-y-6">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
-      <h2 class="text-2xl font-bold text-slate-900">Painel do Organizador</h2>
-      <p class="text-sm text-slate-500">Marque números como vendidos ou libere novamente quando necessário.</p>
+      <h2 class="text-2xl font-bold text-slate-900">Painel da Missão</h2>
+      <p class="text-sm text-slate-500">Controle quem já entrou na causa sigilosa e libere números quando precisar.</p>
     </div>
     <div class="flex gap-3 text-sm flex-wrap">
-      <a class="inline-flex items-center gap-2 rounded-full bg-rose-500 px-4 py-2 text-white font-semibold shadow-lg shadow-rose-200/40 hover:bg-rose-400 transition" href="{{ url_for('buyers') }}?key={{ key }}">Lista de compradores</a>
+      <a class="inline-flex items-center gap-2 rounded-full bg-rose-500 px-4 py-2 text-white font-semibold shadow-lg shadow-rose-200/40 hover:bg-rose-400 transition" href="{{ url_for('buyers') }}?key={{ key }}">Pessoas confirmadas</a>
       <a class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-slate-700 font-semibold hover:border-slate-400 hover:bg-white transition" href="{{ url_for('index') }}?key={{ key }}">Ver grade</a>
     </div>
   </div>
@@ -449,18 +450,18 @@ ADMIN_TMPL = BASE_HEAD + """
 """ + FOOTER
 
 BUYERS_TMPL = BASE_HEAD + """
-<div class="raffle-card rounded-3xl bg-white/80 shadow-2xl shadow-slate-200 p-6 sm:p-8 border border-white/50 buyers-wrapper">
+<div class="raffle-card rounded-3xl bg-white border border-slate-200 shadow-lg p-6 sm:p-8 buyers-wrapper">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
-      <h2 class="text-2xl font-bold text-slate-900">Compradores</h2>
-      <p class="text-sm text-slate-500">Histórico em tempo real de quem já garantiu seu número.</p>
+      <h2 class="text-2xl font-bold text-slate-900">Pessoas Solidárias</h2>
+      <p class="text-sm text-slate-500">Lista confidencial de quem já abraçou a causa nobre.</p>
     </div>
     <div class="flex items-center gap-3 flex-wrap">
       <button type="button" class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-slate-700 border border-slate-300 shadow-sm hover:border-rose-300 transition" data-toggle-target=".buyers-wrapper">
         <span class="toggle-hint-hide">Ocultar contatos</span>
         <span class="toggle-hint-show">Mostrar contatos</span>
       </button>
-      <a class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 transition" href="{{ url_for('index') }}?key={{ key }}">Ver grade</a>
+      <a class="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 transition" href="{{ url_for('index') }}?key={{ key }}">Ver grade sigilosa</a>
       <a class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-white text-sm font-semibold shadow-lg shadow-emerald-200/40 hover:bg-emerald-400 transition" href="{{ url_for('buyers_pdf') }}?key={{ key }}">Baixar PDF</a>
     </div>
   </div>
@@ -486,7 +487,7 @@ BUYERS_TMPL = BASE_HEAD + """
         </div>
       </div>
     {% else %}
-      <p class="py-6 text-sm text-slate-500 text-center">Nenhuma venda registrada por enquanto. Assim que alguém comprar, aparece aqui.</p>
+      <p class="py-6 text-sm text-slate-500 text-center">Nenhum agente confirmado ainda. Assim que alguém aderir à causa, você verá aqui.</p>
     {% endfor %}
   </div>
 </div>
